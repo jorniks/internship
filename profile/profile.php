@@ -43,8 +43,15 @@
                 if ($comp_stmt->rowCount() > 0) {
                     header('location: company/profile.php');
                 } else {
-                    session_destroy();
-                    header('location: ../login.php');
+                    $admin_stmt = $con->prepare("SELECT * FROM `admin` WHERE `username` = '$username'");
+                    $admin_stmt->execute();
+        
+                    if ($admin_stmt->rowCount() > 0) {
+                        header('location: admin_dashboard.php');
+                    } else {
+                        session_destroy();
+                        header('location: ../login.php');
+                    }
                 }
             }
             
