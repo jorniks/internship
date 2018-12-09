@@ -3,7 +3,7 @@
 <?
     include "connection.php";
     
-    if (isset($_GET['postID'])) {
+    if (isset($_GET['username'])) {
         $postID = $_GET['postID'];
         $username = $_GET['username'];
 
@@ -22,14 +22,14 @@
         $company = $_GET['company'];
 
         try {
-            $sql = "DELETE FROM `applications` WHERE `c_username`= '$company'";
-            $con->exec($sql);
+            $app_del = "DELETE FROM `applications` WHERE `c_username`= '$company'";
+            $con->exec($app_del);
 
-            $update_stmt = $con->prepare("DELETE FROM `new_intership` WHERE `username` = '$company'");
-            $update_stmt->execute();
+            $placement_del = $con->prepare("DELETE FROM `new_intership` WHERE `username` = '$company'");
+            $con->exec($placement_del);
 
-            $sql = "DELETE FROM `comp_users` WHERE `username`= '$company'";
-            $con->exec($sql);
+            $comp_del = "DELETE FROM `comp_users` WHERE `username`= '$company'";
+            $con->exec($comp_del);
 
             header('location: ../profile/admin_dashboard.php');
         } catch (PDOException $th) {

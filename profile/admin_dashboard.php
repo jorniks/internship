@@ -87,7 +87,6 @@
                                                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                                     $postID = $row['id'];
                                                     $company = $row['username'];
-                                                    $link = "dashboard.php?postID=$postID&company=$company";
 
     $comp_stmt = $con->prepare("SELECT COUNT(*) AS listings FROM `new_intership` WHERE `username` = '$company'");
     $comp_stmt->execute();
