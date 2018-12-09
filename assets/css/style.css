@@ -1,0 +1,460 @@
+
+.navbar-brand{
+	padding: 2px;
+}
+
+#myNavbar{
+  	padding-top: 12px;
+}
+
+#myNavbar #nav-ul a{
+  color: #3385ff;
+  font-weight: bold;
+}
+
+#si, #li{
+  	border: 1px solid #3385ff;
+	margin: 12px;
+	padding: 2px 15px;
+	border-radius: 20px;
+}
+
+body{
+	background-color:  #ffffff;
+	font-family: calibri;
+	height: 100%;
+}
+
+#face{
+	background-image: url('../img/ab.png');
+	background-repeat: no-repeat;
+	background-size:cover;
+	height: 700px;
+}
+
+.categories{
+	position:relative;
+	margin: 0 auto;
+	padding: 300px 50px;
+	color: #ffffff;
+}
+
+
+#cats{
+	padding: 20px 5px;
+	background-color:  #d9d9d9;
+}
+
+
+/*employer profile*/
+#emp_profile{
+  	padding: 50px;
+  	font-family: calibri;
+}
+
+#emphead strong{
+  	color: #3365ff;
+}
+
+tbody{
+  	font-weight: normal;
+  	font-family: arial;
+}
+
+#stuhead{
+	color: #1345ff;
+	padding: 50px;
+}
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+      width: 70%;
+      height: 60%;
+      margin: auto;
+}
+
+.interns{
+  	float: left;
+}
+
+.employe{
+  	float: left;
+}
+
+
+
+/*==================================================================================
+			ALL STYLING AND MEDIA QUERY BEYOND THIS POINT WERE DONE BY
+			ArJay AND SHOULD NOT BE EDITTED EXCEPT WITH FULL KNOWLEDGE
+			OF WHAT THE CLASS NAMES, ID NAMES AND VALUES ARE FOR.
+==================================================================================*/
+
+/*==================================
+	UNIVERSAL STYLING
+==================================*/
+
+.nav li:hover {
+	background: aliceblue;
+	color: #000000;
+}
+
+a:hover, a:active {
+	text-decoration: none;
+}
+
+.h1 {
+	font-size: 50px;
+}
+
+main{
+	margin-top: 60px;
+	min-height: 500px;
+	height: 100%;
+}
+
+.main{
+	margin-top: 90px;
+}
+
+.nav{
+	min-height: 50px;
+}
+
+.message {
+	width: 100%;
+	height: 100%;
+}
+
+.centered {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.kceo {
+	height: 200px;
+	float: left;
+	margin-right: 15px;
+}
+
+/*==================================
+	FOOTER STYLING
+==================================*/
+.footer{
+	background: #222;
+	color: #fff;
+	padding: 0 0 30px 0;
+	font-size: 14px;
+}
+
+.footer .copyright {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.footer .credits {
+    text-align: center;
+    font-size: 13px;
+}
+
+.back-to-top {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: none;
+	background: #3385ff;
+	color: #ffffff;
+	font-size: 1.3em;
+	position: fixed;
+	right: 20px;
+	bottom: 35px;
+	z-index: 10000;
+	display: none;
+}
+
+/*==================================
+	INDEX PAGE STYLING
+==================================*/
+
+.caption {
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-top: 0;
+	padding: 20px 0;
+}
+
+.opening {
+	padding: 30px 0 0 0;
+}
+
+.opening .box {
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 5px 5px 10px rgba(73, 78, 92, 0.3);
+    background: #d9d9d9;
+	transition: 0.4s;
+	border-top-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+}
+
+.opening .box:hover {
+    box-shadow: 10px 10px 15px rgba(73, 78, 92, 0.1);
+}
+
+.opening .box h4 {
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.opening .box p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    line-height: 24px;
+}
+
+.opening .box .description {
+	margin-bottom: 15px;
+	margin-top: 15px;
+	font-style: italic;
+}
+
+.items {
+	padding: 30px 0 0 0;
+}
+
+.items .box {
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 10px 10px 15px rgba(73, 78, 92, 0.1);
+    background: #fff;
+    transition: 0.4s;
+}
+
+.items .box:hover {
+	box-shadow: 0px 0px 30px rgba(73, 78, 92, 0.15);
+	transform: translateY(-10px);
+	-webkit-transform: translateY(-10px);
+	-moz-transform: translateY(-10px);
+}
+
+.items .box .icon {
+    float: left;
+}
+
+.items .box .icon i {
+    color: #444;
+    font-size: 64px;
+    transition: 0.5s;
+    line-height: 0;
+    margin-top: 34px;
+}
+
+.items .box h4 {
+    margin-left: 100px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.items .box p {
+    font-size: 14px;
+    margin-left: 100px;
+    margin-bottom: 0;
+    line-height: 24px;
+}
+
+.contact {
+	background-image: url('../img/ac.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	height: 100%;
+	padding: 20px;
+}
+
+.contact-info .col-md-3 {
+	line-height: 3;
+	display: inline;
+	text-align: center;
+}
+
+.contact-info i {
+	font-size: 2.5em;
+}
+
+.fa-twitter {
+	color: #50d8af;
+}
+
+#alert {
+	color: red;
+}
+
+.form input, .form textarea {
+    padding: 10px 14px;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 15px;
+}
+
+.form button {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+
+/*==================================
+	REGISTRATION FORM STYLING
+==================================*/
+
+.register {
+	background-image: url('../img/8.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+}
+
+.register .panel {
+	width: 50%;
+	margin: 0 auto;
+	padding: 40px;
+	margin-bottom: 20px;
+}
+/*==================================
+	LOGIN FORM STYLING
+==================================*/
+
+.login {
+	background-image: url('../img/8.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+}
+
+.login-panel {
+	margin: 0 auto;
+	margin-top: 55px;
+	margin-bottom: 51px;
+	width: 310px;
+	padding: 10px;
+	background: rgba(217, 209, 220, 0.7);
+}
+
+.login-panel p {
+	font-size: 4em;
+	color: #555;
+	margin-bottom: 2px;
+}
+
+.input-group {
+	margin-top: 20px;
+}
+
+.input-group input:focus, .input-group textarea:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.login-panel .input-group-addon{
+    padding: 6px 12px;
+    color: #8b9199;
+    font-weight: normal;
+    border: none;
+    border-radius: 0;
+}
+
+.login-panel input[type="text"], .login-panel input[type="password"] {
+	height: 40px;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.login-panel button {
+	font-size: 1.2em;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.check {
+	margin-left: 22px;
+	color: #555;
+}
+
+
+@media (max-width: 765px) {
+	
+/*==================================
+	UNIVERSAL QUERY
+==================================*/
+
+	.main{
+		margin-top: 60px;
+	}
+	.centered {
+		width: 100%;
+	}
+	
+	.main .form {
+		border-top: none;
+		margin-top: 10px;
+	}
+
+	.kceo {
+		float: none;
+		margin-right: 0;
+		width: 210px;
+		margin-bottom: 15px;
+	}
+
+/*==================================
+	INDEX MEDIA QUERY
+==================================*/
+	.categories button {
+		margin-top: 15px;
+	}
+
+	.items .box .box {
+		margin-bottom: 20px;
+	}
+
+	.items .box .icon {
+		float: none;
+		text-align: center;
+		padding-bottom: 15px;
+	}
+
+	.items .box h4, .items .box p {
+		margin-left: 0;
+		text-align: center;
+	}
+
+	.form {
+		border-top: 1px solid rgba(217, 209, 220, 0.7);
+		margin-top: 25px;
+	}
+
+
+	/*==================================
+		REGISTRATION FORM STYLING
+	==================================*/
+
+	.register {
+		height: 600px;
+	}
+
+	.register .panel {
+		width: 90%;
+		padding: 0;
+	}
+}
+
+
+
+.form-control:focus {
+	box-shadow: none;
+}
+
