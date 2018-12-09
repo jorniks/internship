@@ -220,10 +220,10 @@
                                         <a href="mailto:YOUR_EMAIL_ADDRESS" id="alert"><i class="fa fa-google-plus"></i></a>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="http://facebook.com/kingsley.james.376"><i class="fa fa-facebook"></i></a>
+                                        <a href="http://facebook.com/"><i class="fa fa-facebook"></i></a>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="http://twitter.com/apoyibo"><i class="fa fa-twitter"></i></a>
+                                        <a href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
                                     </div>
                                 </div>
                             </div>
