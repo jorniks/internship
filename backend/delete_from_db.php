@@ -25,7 +25,7 @@
             $app_del = "DELETE FROM `applications` WHERE `c_username`= '$company'";
             $con->exec($app_del);
 
-            $placement_del = $con->prepare("DELETE FROM `new_intership` WHERE `username` = '$company'");
+            $placement_del = "DELETE FROM `new_intership` WHERE `username` = '$company'";
             $con->exec($placement_del);
 
             $comp_del = "DELETE FROM `comp_users` WHERE `username`= '$company'";
