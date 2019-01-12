@@ -109,6 +109,12 @@
                                                     Please confirm your details are correct and click submit.
                                                 </div>
                                             <?
+                                                } else {
+                                            ?>
+                                                <div class="alert alert-info">
+                                                    Consider completing your profile via your profile page to avoid filling forms whenever you wish to apply for an internship.
+                                                </div>
+                                            <?
                                                 }
                                             ?>
                                         </div>
