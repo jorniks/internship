@@ -39,7 +39,7 @@
         $company = $_GET['company'];
         $c_email = $_GET['c_email'];
 
-        $subject = "Congratulations " . $name;
+        $subject = "Application Declined for " . $name;
 
         $message = "Dear " . $name . ",\n\n
                 Your application for internship with " . $company . " was received but declined. We are sorry not to accept your application but we wish you the best of luck and suggest you try other organizations. \n\n\n
