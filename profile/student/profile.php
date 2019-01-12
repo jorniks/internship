@@ -47,6 +47,7 @@
         <?
             $success = false;
             $failed = false;
+            $confirm = false;
     
             try {
                 $user_stmt = $con->prepare("SELECT * FROM `student` WHERE `username` = '$username'");
@@ -62,6 +63,10 @@
                     $course = $row['course'];
                     $gender = $row['gender'];
                     $password = $row['password'];
+
+                    if ($name == '' || $email == '' || $gender == '' || $phone == '' || $address == '' || $school == '' || $department == '' || $course == '' || $duration == '') {
+                        $confirm = true;
+                    }
                 } 
                 
             } catch (PDOException $th) {
@@ -152,8 +157,14 @@
                                         echo ("<div class='alert alert-success'>Profile updated successfully.</div>");
                                     } else if($failed == true) {
                                         echo ("<div class='alert alert-danger'>Profile update failed, try again.</div>");
+                                    } else if ($confirm == true) {
+                                ?>
+                                    <!-- ONLY SHOWS WHEN INFORMATION ABOUT THE STUDENT IS INCOMPLETE IN THE DATABASE -->
+                                        <div class="alert alert-info">
+                                            Submitting information about yourself will autofill application forms for you when you want to apply for internship.
+                                        </div>
+                                <?
                                     }
-                                    
                                 ?>
 
                                         <div class="form-group">
