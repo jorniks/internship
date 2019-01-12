@@ -24,8 +24,8 @@
             } elseif ($stmt-> rowCount() > 0) {
                 echo("2");
             } else {
-                $comp_stmt = $con->prepare("INSERT INTO `comp_users`(`orgname`, `category`, `username`, `address`, `email`, `password`) VALUES (?,?,?,?,?,?)");
-                $co = $comp_stmt->execute(array($name, $category, $username, $address, $email, $password));
+                $comp_stmt = $con->prepare("INSERT INTO `comp_users`(`orgname`, `category`, `username`, `address`, `email`, `password`, `phone`) VALUES (?,?,?,?,?,?,?)");
+                $co = $comp_stmt->execute(array($name, $category, $username, $address, $email, $password, ''));
                 if ($co) {
                     $_SESSION['username'] = $username;
                     echo("1");
@@ -55,7 +55,7 @@
             } elseif ($stmt-> rowCount() > 0) {
                 echo("2");
             } else {
-                $student_sql = "INSERT INTO `student`(`name`, `username`, `email`, `password`) VALUES ('$name','$username','$email','$password')";
+                $student_sql = "INSERT INTO `student`(`name`, `email`, `gender`, `username`, `password`, `phone`, `address`, `school`, `department`, `course`, `duration`) VALUES ('$name', '$email', '','$username','$password', '', '', '', '', '', '')";
                 if ($con->exec($student_sql)) {
                     $_SESSION['username'] = $username;
                     echo 1;

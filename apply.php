@@ -52,10 +52,30 @@
                         $postID = $_GET['postID'];
 
 
+                        $confirm = false;
+
                     try {
                         $user_stmt = $con->prepare("SELECT * FROM `student` WHERE `username` = '$username'");
                         $user_stmt->execute();
                         if ($user_stmt->rowCount() > 0) {
+                            $row = $user_stmt->fetch(PDO::FETCH_ASSOC);
+
+                            // Personal info
+                            $name = trim($row['name']);
+                            $email = trim($row['email']);
+                            $gender = trim($row['gender']);
+                            $phone = trim($row['phone']);
+                            $address = trim($row['address']);
+
+                            // Education info
+                            $school = trim($row['school']);
+                            $department = trim($row['department']);
+                            $course = trim($row['course']);
+                            $duration = trim($row['duration']);
+
+                            if ($name != '' && $email != '' && $gender != '' && $phone != '' && $address != '' && $school != '' && $department != '' && $course != '' && $duration != '') {
+                                $confirm = true;
+                            }
                 ?>
             <div class="row">
                 <div class="col-md-12">
@@ -80,31 +100,106 @@
                                     <input type="hidden" id="postID" value="<?=$postID;?>">
                                     <input type="hidden" id="c_username" value="<?=$get_username;?>">
 
-                                        <div class="message"></div>
+                                        <div class="message">
+                                            <!-- ONLY SHOWS WHEN ALL INFORMATION ABOUT THE STUDENT IS FOUND IN THE DATABASE -->
+                                            <?
+                                                if ($confirm == true) {
+                                            ?>
+                                                <div class="alert alert-info">
+                                                    Please confirm your details are correct and click submit.
+                                                </div>
+                                            <?
+                                                }
+                                            ?>
+                                        </div>
                                         
                                         <div class="form-group">
-                                            <input type="text" id="name" class="form-control" placeholder="Full Name">
+                                            <?
+                                                if ($name != '') {
+                                            ?>
+                                                <input type="text" id="name" class="form-control" placeholder="<?=$name;?>" value="<?=$name;?>">
+                                            <?
+                                                } else {
+                                            ?>
+                                                <input type="text" id="name" class="form-control" placeholder="Full Name">
+                                            <?
+                                                }
+                                            ?>
                                             <small id="alert" class="name"></small>
                                         </div>
                                         <div class="form-group">
                                             <label>Gender: </label>
-                                            <select class="form-control" id="gender">
-                                                <option></option>
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                            </select>
+                                            <?
+                                                if ($gender != '') {
+                                            ?>
+                                                <select class="form-control" id="gender">
+                                            <?
+                                                if ($gender == "Male") {
+                                            ?>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                            <?
+                                                } else {
+                                            ?>
+                                                    <option>Female</option>
+                                                    <option>Male</option>
+                                            <?
+                                                }
+                                            ?>
+                                                </select>
+                                            <?
+                                                } else {
+                                            ?>
+                                                <select class="form-control" id="gender">
+                                                    <option></option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
+                                            <?
+                                                }
+                                            ?>
                                             <small id="alert" class="gender"></small>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" id="email" class="form-control" placeholder="Email">
+                                            <?
+                                                if ($email != '') {
+                                            ?>
+                                                <input type="text" id="email" class="form-control" placeholder="<?=$email;?>" value="<?=$email;?>">
+                                            <?
+                                                } else {
+                                            ?>
+                                                <input type="text" id="email" class="form-control" placeholder="Email">
+                                            <?
+                                                }
+                                            ?>
                                             <small id="alert" class="email"></small>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" id="phone" class="form-control" placeholder="Phone Number">
+                                            <?
+                                                if ($phone != '') {
+                                            ?>
+                                                <input type="text" id="phone" class="form-control" placeholder="<?=$phone;?>" value="<?=$phone;?>">
+                                            <?
+                                                } else {
+                                            ?>
+                                                <input type="text" id="phone" class="form-control" placeholder="Phone Number">
+                                            <?
+                                                }
+                                            ?>
                                             <small id="alert" class="phone"></small>
                                         </div>
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="3" id="address" placeholder="Current Address"></textarea>
+                                            <?
+                                                if ($address != '') {
+                                            ?>
+                                                <textarea class="form-control" rows="3" id="address" placeholder="<?=$address;?>"><?=$address;?></textarea>
+                                            <?
+                                                } else {
+                                            ?>
+                                                <textarea class="form-control" rows="3" id="address" placeholder="Current Address"></textarea>
+                                            <?
+                                                }
+                                            ?>
                                             <small id="alert" class="address"></small>
                                         </div>
 
@@ -128,19 +223,59 @@
                                         <div class="message2"></div>
 
                                         <div class="form-group">
-                                            <input type="text" id="school" class="form-control" placeholder="Institution Name">
+                                            <?
+                                                if ($school != '') {
+                                            ?>
+                                                <input type="text" id="school" class="form-control" placeholder="<?=$school;?>" value="<?=$school;?>">
+                                            <?
+                                                } else {
+                                            ?>
+                                                <input type="text" id="school" class="form-control" placeholder="Institution Name">
+                                            <?
+                                                }
+                                            ?>
                                             <small id="alert" class="school"></small>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" id="duration" class="form-control" placeholder="Duration of study (2017/2019)">
+                                            <?
+                                                if ($duration != '') {
+                                            ?>
+                                                <input type="text" id="duration" class="form-control" placeholder="<?=$duration;?>" value="<?=$duration;?>">
+                                            <?
+                                                } else {
+                                            ?>
+                                                <input type="text" id="duration" class="form-control" placeholder="Duration of study (2017/2019)">
+                                            <?
+                                                }
+                                            ?>
                                             <small id="alert" class="duration"></small>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" id="department" class="form-control" placeholder="Department (Computer Science)">
+                                            <?
+                                                if ($department != '') {
+                                            ?>
+                                                <input type="text" id="department" class="form-control" placeholder="<?=$department;?>" value="<?=$department;?>">
+                                            <?
+                                                } else {
+                                            ?>
+                                                <input type="text" id="department" class="form-control" placeholder="Department (Computer Science)">
+                                            <?
+                                                }
+                                            ?>
                                             <small id="alert" class="department"></small>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" id="course" class="form-control" placeholder="Course of Study">
+                                            <?
+                                                if ($course != '') {
+                                            ?>
+                                                <input type="text" id="course" class="form-control" placeholder="<?=$course;?>" value="<?=$course;?>">
+                                            <?
+                                                } else {
+                                            ?>
+                                                <input type="text" id="course" class="form-control" placeholder="Course of Study">
+                                            <?
+                                                }
+                                            ?>
                                             <small id="alert" class="course"></small>
                                         </div>
                                         <div class="form-group">
