@@ -111,7 +111,7 @@
                             <div class="col-lg-4">
                                 <div class="box">
                                     <div class="icon"><i><img src="assets/img/tele.png" alt="Communication"></i></div>
-                                    <h4 class="title"><a href="category/category.php?category=communication">Communication</a></h4>
+                                    <h4 class="title"><a href="category?category=communication">Communication</a></h4>
                                     <p class="description">
                                         Take a career in ICT and learn the perks of communication with any Nigerian telecommunication industry.
                                     </p>
@@ -121,7 +121,7 @@
                             <div class="col-lg-4">
                                 <div class="box">
                                     <div class="icon"><i><img src="assets/img/home.png" alt="Construction"></i></div>
-                                    <h4 class="title"><a href="category/category.php?category=construction">Construction</a></h4>
+                                    <h4 class="title"><a href="category?category=construction">Construction</a></h4>
                                     <p class="description">
                                         Take a career in ICT and learn the perks of communication with any Nigerian telecommunication industry.
                                     </p>
@@ -131,7 +131,7 @@
                             <div class="col-lg-4">
                                 <div class="box">
                                     <div class="icon"><i><img src="assets/img/tools.png" alt="Engineering"></i></div>
-                                    <h4 class="title"><a href="category/category.php?category=engineering">Engineering</a></h4>
+                                    <h4 class="title"><a href="category?category=engineering">Engineering</a></h4>
                                     <p class="description">
                                         Take a career in ICT and learn the perks of communication with any Nigerian telecommunication industry.
                                     </p>
@@ -141,7 +141,7 @@
                             <div class="col-lg-4">
                                 <div class="box">
                                     <div class="icon"><i><img src="assets/img/agric.png" alt="Agriculture"></i></div>
-                                    <h4 class="title"><a href="category/category.php?category=agriculture">Agriculture</a></h4>
+                                    <h4 class="title"><a href="category?category=agriculture">Agriculture</a></h4>
                                     <p class="description">
                                         Take a career in ICT and learn the perks of communication with any Nigerian telecommunication industry.
                                     </p>
@@ -151,7 +151,7 @@
                             <div class="col-lg-4">
                                 <div class="box">
                                     <div class="icon"><i><img src="assets/img/clock.png" alt="Banking and Finance"></i></div>
-                                    <h4 class="title"><a href="category/category.php?category=banking %26 finance">Banking &amp; Finance</a></h4>
+                                    <h4 class="title"><a href="category?category=banking %26 finance">Banking &amp; Finance</a></h4>
                                     <p class="description">
                                         Take a career in ICT and learn the perks of communication with any Nigerian telecommunication industry.
                                     </p>
@@ -161,7 +161,7 @@
                             <div class="col-lg-4">
                                 <div class="box">
                                     <div class="icon"><i><img src="assets/img/music.png" alt="Art and Media"></i></div>
-                                    <h4 class="title"><a href="category/category.php?category=art %26 Media">Art &amp; Multimedia</a></h4>
+                                    <h4 class="title"><a href="category?category=art %26 Media">Art &amp; Multimedia</a></h4>
                                     <p class="description">
                                         Take a career in ICT and learn the perks of communication with any Nigerian telecommunication industry.
                                     </p>
@@ -171,7 +171,7 @@
                             <div class="col-lg-4">
                                 <div class="box">
                                     <div class="icon"><i><img src="assets/img/ad.png" alt="Health"></i></div>
-                                    <h4 class="title"><a href="category/category.php?category=health">Health</a></h4>
+                                    <h4 class="title"><a href="category?category=health">Health</a></h4>
                                     <p class="description">
                                         Take a career in ICT and learn the perks of communication with any Nigerian telecommunication industry.
                                     </p>
@@ -181,7 +181,7 @@
                             <div class="col-lg-4">
                                 <div class="box">
                                     <div class="icon"><i><img src="assets/img/science.png" alt="Science"></i></div>
-                                    <h4 class="title"><a href="category/category.php?category=science">Science</a></h4>
+                                    <h4 class="title"><a href="category?category=science">Science</a></h4>
                                     <p class="description">
                                         Take a career in ICT and learn the perks of communication with any Nigerian telecommunication industry.
                                     </p>
@@ -191,7 +191,7 @@
                             <div class="clearfix"></div>
 
                             <div>
-                                <a href="category/category.php?category=others" class="btn btn-link">Other Categories</a>
+                                <a href="category?category=others" class="btn btn-link">Other Categories</a>
                             </div>
                         </div>
                     </div>
@@ -217,13 +217,13 @@
                                     
                                     <h4 class="caption">Follow us on Social media</h4>
                                     <div class="col-md-3">
-                                        <a href="mailto:YOUR_EMAIL_ADDRESS" id="alert"><i class="fa fa-google-plus"></i></a>
+                                        <a href="mailto:kingsleyjames51@yahoo.com" id="alert"><i class="fa fa-google-plus"></i></a>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="http://facebook.com/"><i class="fa fa-facebook"></i></a>
+                                        <a href="http://facebook.com/kingsley.james.376"><i class="fa fa-facebook"></i></a>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
+                                        <a href="http://twitter.com/apoyibo"><i class="fa fa-twitter"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -237,13 +237,36 @@
                 $sender = $_POST['email'];
                 $message = $_POST['message'];
                 $subject = "Treat as urgent";
-                $receiver = "YOUR_EMAIL_ADDRESS";
+                $receiver = "kingsleyjames51@yahoo.com";
+                // $receiver = "jonyx747@gmail.com";
+                $time = time();
 
                 require 'vendor/autoload.php';
 
                 include "core/mail.php";
 
-                sendMail($name, $sender, $subject, $receiver, $message);
+                if (sendMail($name, $sender, $subject, $receiver, $message)) {
+                    try {
+                        $msgSQL = $con->prepare("INSERT INTO `message`(`name`, `email`, `message`, `time`) VALUES (?,?,?,?)");
+                        $msgSaved = $msgSQL->execute(array($name, $sender, $message, $time));
+                        if ($msgSaved) {
+        ?>
+                <div class="alert alert-success">Thank you for reaching out. We will contact you as soon as possible.</div>
+        <?
+                        }
+        ?>
+                <script>console.log("Message was sent but failed to save in the database");</script>
+        <?
+                    } catch (PDOException $pe) {
+        ?>
+                <script>console.log(<?=$pe->getMessage()?>);</script>
+        <?
+                    }
+                } else {
+        ?>
+                <div class="alert alert-danger">Your message was not sent. Please try again.</div>
+        <?
+                }
             }
         ?>
                                 <div class="form-group">

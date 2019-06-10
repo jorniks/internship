@@ -55,7 +55,7 @@
 
                 <div class="col-md-12 col-sm-12">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <div class="panel-info">
                             <div class="panel-heading">
                                 <h4>Registered Companies</h4>
@@ -87,6 +87,7 @@
                                                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                                     $postID = $row['id'];
                                                     $company = $row['username'];
+                                                    $link = "dashboard.php?postID=$postID&company=$company";
 
     $comp_stmt = $con->prepare("SELECT COUNT(*) AS listings FROM `new_intership` WHERE `username` = '$company'");
     $comp_stmt->execute();
@@ -112,7 +113,10 @@
                                                 <td><?=$row['address'];?></td>
                                                 <td><?=$comp_row['listings'];?></td>
                                                 <td>
-                                                    &nbsp;<a href="#" class="btn btn-default" data-toggle="modal" data-target="#<?=$row['username'];?>">View Info</a>&nbsp; | &nbsp;<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#<?=$row['id'];?>">Delete</a>
+                                                        &nbsp;
+                                                    <button class="btn btn-default" data-toggle="modal" data-target="#<?=$row['username'];?>">View Info</button>
+                                                        &nbsp; | &nbsp;
+                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#<?=$row['id'];?>">Delete</button>
                                                 </td>
 
                         <div class="modal fade" id="<?=$row['username'];?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -197,6 +201,122 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--============================================================================
+                                            MESSAGES PANE
+                    =============================================================================-->
+
+                    <div class="col-md-4">
+                            <div class="panel-info">
+                            <div class="panel-heading">
+                                <h4>Posted Messages</h4>
+                            </div>
+
+                            <div class="panel-body">
+                                <div id="alert"></div>
+                                <?
+                                    try {
+                                        $msgSQL = $con->prepare("SELECT * FROM `message` WHERE 1 ORDER BY `id` DESC");
+                                        $msgSQL->execute();
+                                        if($msgSQL->rowCount() > 0) {
+                                ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-stripped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <!-- <th>Name</th> -->
+                                                <th>Email</th>
+                                                <th>Date | Time</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?
+                                                $i = 0;
+                                                while($row = $msgSQL->fetch(PDO::FETCH_ASSOC)) {
+                                                    $hour = date('h', $row['time'])-1;
+                                                    $minute = date(':i a', $row['time']);
+                                                    $date = date('F d, Y', $row['time']);
+
+                                                    $time = $date . " | " . $hour.$minute;
+                                            ?>
+                                            <tr>
+                                                <td><?=$i += 1?></td>
+                                                <td><?=$row['email'];?></td>
+                                                <td><?=$time?></td>
+                                                <td>
+                                                        &nbsp;
+                                                    <button class="btn btn-default" data-toggle="modal" data-target="#<?=$row['id'];?>">View</button>
+                                                        &nbsp; | &nbsp;
+                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#del<?=$row['id'];?>">Delete</button>
+                                                </td>
+
+                        <div class="modal fade" id="<?=$row['id'];?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">Message Detail</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            Name: <label class="text-capitalize"><?=$row['name'];?></label>
+                                        </div>
+                                        <div>
+                                            Email: <label><?=$row['email'];?></label>
+                                        </div>
+                                        <div>
+                                            Message: <p><?=$row['message'];?></p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary btn-block" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal fade" id="del<?=$row['id'];?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            This message from <label class="text-capitalize"><?=$row['name'];?></label> will be permanently deleted.
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary pull-right" data-dismiss="modal">Cancel</button>
+                                        <a href="../backend/delete_from_db.php?message=<?=$row['id']?>" class="btn btn-danger pull-left" id="decline">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            </tr>
+                                            <?
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <?
+                                        } else {
+                                            echo "<h4 class='text-center'>There are no messages saved at the moment.</h4>";
+                                        }
+                                    } catch (PDOException $th) {
+                                        echo ("<div class='alert alert-danger'>". $th->getMessage() ."</div>");
+                                    }
+
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

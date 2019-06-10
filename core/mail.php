@@ -8,17 +8,13 @@
         $content = new SendGrid\Content("text/plain", $message);
         $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-        $apiKey = 'YOUR_API_KEY';
+        $apiKey = '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';
         $sg = new \SendGrid($apiKey);
 
         if ($sg->client->mail()->send()->post($mail)) {
-    ?>
-            <div class="alert alert-success">Thank you for reaching out. We will contact you as soon as possible.</div>
-    <?
+            return true;
         } else {
-    ?>
-            <div class="alert alert-danger">Your message was not sent. Please try again.</div>
-    <?
+            return false;
         }
     }
 ?>
