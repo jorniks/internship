@@ -8,7 +8,7 @@
         $content = new SendGrid\Content("text/plain", $message);
         $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-        $apiKey = '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';
+        $apiKey = 'YOUR_API_KEY';
         $sg = new \SendGrid($apiKey);
 
         if ($sg->client->mail()->send()->post($mail)) {
